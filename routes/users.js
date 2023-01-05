@@ -11,20 +11,6 @@ const {findUser, createUser} = require('../services/user.service')
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  //TODO - Why does this take in a user and return a user?
-  res.json({
-    id: req.user.id,
-    username: req.user.username,
-    email: req.user.email,
-    date: req.user.date,
-    birthdate: req.user.birthdate,
-    likedSongs: req.user.likedSongs,
-    playlists: req.user.playlists,
-    likedAlbums: req.user.likedAlbums,
-  });
-})
-
 router.post('/register', async (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) return res.status(400).json(errors);
