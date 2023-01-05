@@ -30,70 +30,33 @@ router.post('/register', async (req, res) => {
 })
 
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  if (!isValid) return res.status(400).json(errors);
 
-  const email = req.body.email;
-  const password = req.body.password;
+  let {email, password} = req.body;
+  let user = findUser({email})  
+  if (!user) return res.status(404).json({login: 'Unable to find a user with the email provided'});
+  bcrypt.compare(password, user.password)
+    .then(isMatch => {
+      if (isMatch) {
+        const payload = { id: user.id, username: user.username };
 
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (!user) {
-        // return res.status(404).json({login: 'This user does not exist'});
-        // }
-        User.findOne({ username: req.body.email })
-          .then(user => {
-            if (!user) {
-              return res.status(404).json({ login: 'Incorrect username or password.' });
-            }
-            bcrypt.compare(password, user.password)
-              .then(isMatch => {
-                if (isMatch) {
-                  const payload = { id: user.id, username: user.username };
-
-                  jwt.sign(
-                    payload,
-                    keys.secretOrKey,
-                    // Tell the key to expire in one hour
-                    { expiresIn: 3600 },
-                    (err, token) => {
-                      res.json({
-                        success: true,
-                        token: 'Bearer ' + token
-                      });
-                    });
-                } else {
-                  return res.status(400).json({ login: 'Incorrect username or password.' });
-                }
-              })
-
-          })
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          // Tell the key to expire in one hour
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token
+            });
+          });
+      } else {
+        return res.status(400).json({ login: 'Incorrect username or password.' });
       }
-      bcrypt.compare(password, user.password)
-        .then(isMatch => {
-          if (isMatch) {
-            const payload = { id: user.id, username: user.username };
-
-            jwt.sign(
-              payload,
-              keys.secretOrKey,
-              // Tell the key to expire in one hour
-              { expiresIn: 3600 },
-              (err, token) => {
-                res.json({
-                  success: true,
-                  token: 'Bearer ' + token
-                });
-              });
-          } else {
-            return res.status(400).json({ login: 'Incorrect username or password' });
-          }
-        })
-
     })
 })
 
