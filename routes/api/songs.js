@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const passport = require('passport');
 const User = require('../../models/User');
 const Song = require('../../models/Song');
 const Artist = require('../../models/Artist');
@@ -64,13 +63,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  // passport.authenticate('jwt', { session: false }),
-  // (req, res) => {
-  //   const { errors, isValid } = validateSongInput(req.body);
-
-  //   if (!isValid) {
-  //     return res.status(400).json(errors);
-  //   }
 
   const newSong = new Song({
     title: req.body.title,
