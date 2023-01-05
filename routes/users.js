@@ -5,11 +5,14 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const passport = require('passport');
+const {hashPassword} = require('../helpers/bcrypt')
+const {findUser, createUser} = require('../services/user.service')
 
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //TODO - Why does this take in a user and return a user?
   res.json({
     id: req.user.id,
     username: req.user.username,
@@ -17,8 +20,8 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     date: req.user.date,
     birthdate: req.user.birthdate,
     likedSongs: req.user.likedSongs,
-    playlists: user.playlists,
-    likedAlbums: user.likedAlbums,
+    playlists: req.user.playlists,
+    likedAlbums: req.user.likedAlbums,
   });
 })
 
@@ -27,23 +30,17 @@ router.post('/register', async (req, res) => {
   if (!isValid) return res.status(400).json(errors);
   let {username, email, birthdate, password} = req.body
 
-  let duplicateEmail = await User.findOne({ email })
+  let duplicateEmail = await findUser({ email })
   if (duplicateEmail) return res.status(400).json({ email: "A user has already registered with this email address" })
   
-  let duplicateUsername = await User.findOne({ username: req.body.username })
+  let duplicateUsername = await findUser({ username })
   if (duplicateUsername) return res.status(400).json({ username: "Username is taken" })
   
   // Otherwise create a new user
-  const newUser = new User({username, email, birthdate, password})
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save()
-        .then(user => res.json(user))
-        .catch(err => console.log(err));
-    })
-  })
+  req.body.password =  await hashPassword(password)
+  const newUser = await createUser(req.body)
+  if (!newUser) return res.status(400)
+  res.json(newUser)
 })
 
 
