@@ -11,7 +11,7 @@ const passport = require("passport");
 //security headers
 const helmet = require("helmet")
 
-app.use(helmet)
+app.use(helmet())
 
 const compression = require('compression')
 app.use(compression())
@@ -20,11 +20,11 @@ app.use(compression())
 const cors = require("cors")
 app.use(cors())
 
-const songs = require("./routes/api/songs");
-const users = require("./routes/api/users");
-const artists = require("./routes/api/artists");
-const albums = require("./routes/api/albums");
-const playlists = require("./routes/api/playlists");
+const songs = require("./routes/songs");
+const users = require("./routes/users");
+const artists = require("./routes/artists");
+const albums = require("./routes/albums");
+const playlists = require("./routes/playlists");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
