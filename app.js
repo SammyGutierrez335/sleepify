@@ -8,6 +8,18 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
+//security headers
+const helmet = require("helmet")
+
+app.use(helmet)
+
+const compression = require('compression')
+app.use(compression())
+
+//enables cross-origin resource sharing (frontend to backend)
+const cors = require("cors")
+app.use(cors())
+
 const songs = require("./routes/api/songs");
 const users = require("./routes/api/users");
 const artists = require("./routes/api/artists");
