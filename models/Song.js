@@ -33,12 +33,6 @@ const SongSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "album"
   }
-  // usersLiked: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "users"
-  //   }
-  // ]
 });
 
 module.exports = mongoose.model("songs", SongSchema);

@@ -12,7 +12,8 @@ const AlbumSchema = new Schema({
   },
   artist: {
     type: Schema.Types.ObjectId,
-    ref: "artists"
+    ref: "artists",
+    autopopulate: true
   },
   imageUrl: {
     type: String,
@@ -21,7 +22,8 @@ const AlbumSchema = new Schema({
   songs: [
     {
       type: Schema.Types.ObjectId,
-      ref: "songs"
+      ref: "songs",
+      autopopulate: true
     }
   ]
 });
