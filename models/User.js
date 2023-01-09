@@ -25,19 +25,21 @@ const UserSchema = new Schema({
   playlists: [
     {
       type: Schema.Types.ObjectId,
-      ref: "playlists"
+      ref: "playlists",
     }
   ],
   likedSongs: [
     {
       type: Schema.Types.ObjectId,
-      ref: "songs"
+      ref: "songs",
+      autoPopulate: true
     }
   ],
   likedAlbums: [
     {
       type: Schema.Types.ObjectId,
-      ref: "albums"
+      ref: "albums",
+      autoPopulate: true
     }
   ]
 });
