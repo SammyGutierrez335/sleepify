@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   searchAlbums,
+  getAllAlbums
 } = require("../services/album.service");
 
 const User = require('../models/User');
@@ -10,40 +11,25 @@ const Artist = require('../models/Artist');
 const Album = require('../models/Album');
 
 router.get('/search/:search', async (req, res) => {
-  const albums = searchAlbums(req.params.search)
+  const albums = await searchAlbums(req.params.search)
   res.json(albums)
 });
 
-router.get('/', (req, res) => {
-  Album.find()
-    .populate('songs')
-    .sort({ date: -1 })
-    .then(albums => res.json(albums))
-    .catch(err => res.status(404).json({ noalbumsfound: 'No albums found' }));
+router.get('/', async (req, res) => {
+    const albums = await getAllAlbums()
+    if (!albums) res.status(404).json({ noalbumsfound: "No albums found"})
+    res.json(albums)
 });
 
-router.get('/:id', (req, res) => {
-  Album.findById(req.params.id)
-    .populate('songs')
-    .populate('artist')
-    .then(album => {
-      res.json(album)
-    })
-    .catch(err =>
-      res.status(404).json({ noalbumfound: 'No album found with that ID' })
-    );
+router.get('/:id', async (req, res) => {
+  const album = await getAlbumById(req.params.id)
+  if (!album) res.status(404).json({ noalbumfound: "No albums found"})
+  res.json(album)
 });
 
-router.post('/new', (req, res) => {
-  
-  const newAlbum = new Album({
-    title: req.body.title,
-    year: req.body.year,
-    artist: req.body.artist,
-    imageUrl: req.body.imageUrl
-  });
-
-  newAlbum.save().then(album => Artist.addAlbum(album.artist, album.id));
+router.post('/new', async (req, res) => {
+  let newAlbum = await createNewAlbum(req.body) 
+  return newAlbum
 });
 
 router.patch('/like/:id', (req, res) => {
