@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const Playlist = require("../models/Playlist");
 const validatePlaylistInput = require("../validation/playlist");
+const findPlaylist = require('../services/playlist.service')
 
 router.post("/create", (req, res) => {
   const { errors, isValid } = validatePlaylistInput(req.body);
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  if (!isValid)  return res.status(400).json(errors);
 
   const newPlaylist = new Playlist({
     title: req.body.title,
@@ -25,18 +23,10 @@ router.post("/create", (req, res) => {
 });
 
 
-router.get('/:id', (req, res) => {
-  Playlist.findById(req.params.id)
-    .populate({
-      path: 'songs',
-      populate: { path: 'artist' }
-    })
-    .then(playlist => {
-      res.json(playlist)
-    })
-    .catch(err =>
-      res.status(404).json({ noplaylistfound: 'No playlist found with that ID' })
-    );
+router.get('/:id', async (req, res) => {
+  let playlist = await findPlaylist({_id: req.params.id})
+  if (!playlist) res.status(404).json({noplaylistfound: 'No playlist found with that ID' })
+  return res.json(playlist)
 });
 
 router.delete('/delete/:id', (req, res) => {
