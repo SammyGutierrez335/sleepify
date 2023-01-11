@@ -37,6 +37,7 @@ router.patch('/like/:id', (req, res) => {
     albumId: req.params.id,
     userId: req.body.userId,
   }
+  //TODO update LIKED structure to be a dictionary
   User.findById(req.body.userId)
     .then(user => {
       if(user) {
