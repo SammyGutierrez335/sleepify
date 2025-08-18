@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const {hashPassword} = require('../helpers/bcrypt')
@@ -34,9 +33,8 @@ router.post('/login', async (req, res) => {
   if (!isValid) return res.status(400).json(errors);
 
   let {email, password} = req.body;
-  let user = findUser({email})  
+  let user = await findUser({email})  
   if (!user) return res.status(404).json({login: 'Unable to find a user with the email provided'});
-  
   let isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) return res.status(400).json({ login: 'Incorrect username or password.' })
 
@@ -69,12 +67,8 @@ router.get("/:id/likedsongs", async (req, res) => {
 
 router.get("/:id/playlists", async (req, res) => {
   const playlistsObj = {};
-  const user = await User.findById(req.params.id)
-    .populate({
-      path: "playlists",
-      populate: "songs" 
-    })
-    .catch(err => res.status(404).json({ nouserfound: "No user found" }));
+  const user = await findUser({_id: req.params.id})
+  .catch(err => res.status(404).json({ nouserfound: "No user found" }));
   
     const playlists = user.playlists;
   for (let index = playlists.length - 1; index > -1; index--) {

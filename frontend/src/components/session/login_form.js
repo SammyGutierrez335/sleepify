@@ -133,7 +133,7 @@ class LoginForm extends React.Component {
 
   demoLogin(e) {
     e.preventDefault();
-    return this.typeWriter('demouser@demouser.com', 'demouser');
+    return this.typeWriter('demouser@demouser.com', 'DemoSleepify');
   }       
 
   typeWriter(email, password) {
@@ -163,25 +163,12 @@ class LoginForm extends React.Component {
       return login()
   }
 
-  // demoLogin(e) {
-  //   e.preventDefault();
-    
-  //   let user = {
-  //     email: "demouser@demouser.com",
-  //     password: "demouser"
-  //   }
-  //   this.setState(user, () => this.props.login(user));
-
-  //   // this.props.login(user);
-    
-  // }
-
   render() {
     this.changeBorder();
     return (
       <div className='login-form-container'>
         <div className='heading'>
-          <img src="static/images/logo2_black.png" alt="sleepify-logo" height="30"/>
+          <img src="images/logo2_black.png" alt="sleepify-logo" height="30"/>
         </div>
         <div className='login-form-error-container'>
           {this.renderMismatchError()}

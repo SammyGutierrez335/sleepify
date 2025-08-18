@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const validatePlaylistInput = require("../validation/playlist");
 const findPlaylist = require('../services/playlist.service')
 
 router.post("/create", (req, res) => {
-  const { errors, isValid } = validatePlaylistInput(req.body);
-  if (!isValid)  return res.status(400).json(errors);
+  if (!req.body.title)  return res.status(400).json("Please enter a title");
 
   const newPlaylist = new Playlist({
     title: req.body.title,

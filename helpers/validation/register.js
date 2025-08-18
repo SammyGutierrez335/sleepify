@@ -5,7 +5,6 @@ const validText = require('./valid-text');
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-
   data.username = validText(data.username) ? data.username : '';
   data.email = validText(data.email) ? data.email : '';
   data.email2 = validText(data.email2) ? data.email : '';
@@ -59,6 +58,7 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.birthdate)) {
     errors.birthdate = 'Birthdate field is required';
   }
+
 
   return {
     errors,

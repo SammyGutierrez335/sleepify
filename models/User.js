@@ -26,6 +26,7 @@ const UserSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "playlists",
+      autoPopulate: true
     }
   ],
   likedSongs: [
@@ -72,4 +73,5 @@ UserSchema.statics.deletePlaylist = (playlistId, userId) => {
   })
 }
 
+UserSchema.plugin(require('mongoose-autopopulate'));
 module.exports = User = mongoose.model("User", UserSchema);

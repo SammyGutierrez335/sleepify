@@ -18,7 +18,9 @@ import GenreShow from "../show/genre_show_container";
 
 class Open extends React.Component {
   componentDidMount = () => {
-    this.props.history.replace("/open");
+    if (this.props) {
+      this.props.history.replace("/open");
+    }
   };
   // onContextMenu={e => e.preventDefault()}
   render() {

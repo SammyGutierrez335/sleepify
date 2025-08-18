@@ -133,7 +133,7 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <div className="heading">
-          <img src="static/images/logo2_black.png.png" alt="sleepify-logo" height="30"/>
+          <img src="images/logo2_black.png.png" alt="sleepify-logo" height="30"/>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
