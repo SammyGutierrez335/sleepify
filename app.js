@@ -41,14 +41,12 @@ require("./config/passport")(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/static", express.static(path.join(__dirname, "public")));
-
 app.use("/api/users", users);
 app.use("/api/songs", songs);
 app.use("/api/artists", artists);
 app.use("/api/albums", albums);
 app.use("/api/playlists", playlists);
-app.use("/static", express.static(path.join(__dirname, "frontend", "public", "assets")));
+app.use("/static", express.static(path.join(__dirname, "frontend", "public")));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
