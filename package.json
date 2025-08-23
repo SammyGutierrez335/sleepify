@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "## Background and Overview Spotify clone with a relaxing library of music. Zzzzz...",
   "main": "app.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
