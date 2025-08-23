@@ -1,6 +1,4 @@
 node_modules
 package-lock.json
-keys_dev.js
-keys_prod.js
-keys.js
+.env
 /config

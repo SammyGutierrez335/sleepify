@@ -15,7 +15,7 @@ app.use(helmet())
 
 const compression = require('compression')
 app.use(compression())
-
+require('dotenv').config()
 //enables cross-origin resource sharing (frontend to backend)
 const cors = require("cors")
 app.use(cors())
