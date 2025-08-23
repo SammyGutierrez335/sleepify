@@ -9,6 +9,7 @@
     "server:debug": "nodemon --inspect app.js",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
+    "prod": "concurrently \"npm run server\" \"npm run build --prefix frontend\" \"npm run frontend\"",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "repository": {
