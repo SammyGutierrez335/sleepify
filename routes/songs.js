@@ -78,7 +78,6 @@ router.post('/new', (req, res) => {
 );
 
 router.patch('/like/:id', (req, res) => {
-  console.log(req.body)
   const likeData = {
     songId: req.params.id,
     userId: req.body.userId

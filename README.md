@@ -1,19 +1,19 @@
 # sleepify
 
 ## Background and Overview
-Sleepify is a MERN stack application that mimics the style and functionality of the popular music streaming app Spotify. Visitors to the application are able to play music, create playlists, and like their favorite songs with the creation of an account. Users are also able to search for their favorite songs, artists, and albums.
+Sleepify is a MERN stack application that mimics the style and functionality of the popular music streaming app Spotify (2020). Visitors to the application are able to play music, create playlists, and like their favorite songs with the creation of an account. Users are also able to search for their favorite songs, artists, and albums.
 
 ![](README_images/webplayer-home.png)
 
 ## Latest Version
-To see the most up to date version, please visit the [web application](https://sleepify-dev.herokuapp.com/).
+To see the most up to date version, please visit the [web application](https://sleepify.onrender.com/).
 
 ## Technologies and Technical Challenges
 - Constructing HTML5 audio player
 - Routes using Express
 - Storing audio in AWS S3
 - Search feature
-- Hosting on Heroku
+- Hosting on Render
 
 ## Feature Spotlight
 ### Media Player
@@ -122,7 +122,6 @@ Task:
     - user:
         - username
         - email
-        - date_of_birth
         - password_digest
         - session_token
         * user has many playlist
@@ -136,7 +135,6 @@ Task:
     - artist
         - name
         - image_url
-        
         * has many songs
     - songs
         - id
@@ -144,6 +142,5 @@ Task:
         - artist_id
         - album_title
         - ID3?
-
     - seeding
   - user dashboard -->

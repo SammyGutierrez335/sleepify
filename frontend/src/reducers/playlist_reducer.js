@@ -7,7 +7,6 @@ import {
 } from "../actions/playlist_actions";
 
 const playlistReducer = (oldState = {}, action) => {
-  console.log(action.type)
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_PLAYLIST:

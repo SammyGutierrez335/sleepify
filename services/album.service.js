@@ -25,8 +25,9 @@ const getAlbumById = async id => {
 const createNewAlbum = (async ({title, year, artist, imageUrl}) => {
   const newAlbum = new Album({ title, year, artist, imageUrl});
 
-  newAlbum.save().then(album => Artist.addAlbum(album.artist, album.id));
+  newAlbum.save().then(album => artist.addAlbum(album.artist, album.id));
 })
+
 module.exports = {
     searchAlbums,
     getAllAlbums,

@@ -22,14 +22,14 @@ const UserSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "playlists",
-      autoPopulate: true
+      autopopulate: true
     }
   ],
   likedSongs: [
     {
       type: Schema.Types.ObjectId,
       ref: "songs",
-      autoPopulate: true
+      autopopulate: true
     }
   ],
   likedAlbums: [

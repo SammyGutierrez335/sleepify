@@ -12,7 +12,6 @@ router.post('/register', async (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) return res.status(400).json(errors);
   let {username, email, password} = req.body
-  console.log([username, email, password])
   let duplicateEmail = await findUser({ email })
   if (duplicateEmail) return res.status(400).json({ email: "A user has already registered with this email address" })
   
