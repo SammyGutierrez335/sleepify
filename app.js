@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-
-const db = require("./config/keys").mongoURI;
+require('dotenv').config()
+const mongoURI = process.env.MONGO_URI
 const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
@@ -15,7 +15,6 @@ app.use(helmet())
 
 const compression = require('compression')
 app.use(compression())
-require('dotenv').config()
 //enables cross-origin resource sharing (frontend to backend)
 const cors = require("cors")
 app.use(cors())
@@ -27,7 +26,7 @@ const albums = require("./routes/albums");
 const playlists = require("./routes/playlists");
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
