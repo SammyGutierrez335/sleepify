@@ -90,6 +90,7 @@ button {
   font-size: 11px;
   display: flex;
   justify-content: center;
+  align-items: center;
   transition: 0.2s;
 }
 
