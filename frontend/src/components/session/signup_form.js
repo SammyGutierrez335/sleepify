@@ -6,29 +6,22 @@ class SignupForm extends React.Component {
     super(props);
     this.state = {
       email: '',
-      email2: '',
       username: '',
       password: '',
       password2: '',
-      birthdate: '',
       errors: {},
       error_touched: {
         email: false,
-        email2: false,
         password: false,
         password2: false,
         username: false,
-        birthdate: false,
       },
       error_exists: {
         email: false,
-        email2: false,
         password: false,
         password2: false,
         username: false,
-        birthdate: false,
       }
-
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,12 +45,10 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let user = {
-      email2: this.state.email2,
       email: this.state.email,
       username: this.state.username,
       password: this.state.password,
       password2: this.state.password2,
-      birthdate: this.state.birthdate,
     };
     this.resetErrorDisplay();
     this.props.signup(user, this.props.history)
@@ -67,11 +58,9 @@ class SignupForm extends React.Component {
     this.setState({
       error_touched: {
         email: false,
-        email2: false,
         password: false,
         password2: false,
         username: false,
-        birthdate: false,
       },
     })
   }
@@ -133,7 +122,7 @@ class SignupForm extends React.Component {
     return (
       <div className="signup-form-container">
         <div className="heading">
-          <img src="images/logo2_black.png.png" alt="sleepify-logo" height="30"/>
+          <img src="images/logo2_black.png" alt="sleepify-logo" height="30"/>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
@@ -141,11 +130,6 @@ class SignupForm extends React.Component {
               <div className="signup-input email">
                 {this.renderInputField('email')}
                 {this.renderError('email')}
-              </div>
-            <br/>
-              <div className="signup-input email2">
-                {this.renderInputField('email2')}
-                {this.renderError('email2')}
               </div>
             <br/>
               <div className="signup-input password">
@@ -161,16 +145,6 @@ class SignupForm extends React.Component {
               <div className="signup-input username">
                 {this.renderInputField('username')}
                 {this.renderError('username')}
-              </div>
-            <br/>
-              <div className="signup-input birthdate">
-                <label>
-                  Date of Birth
-                  <div className="birthdate">
-                    {this.renderInputField('birthdate')}
-                    {this.renderError('birthdate')}
-                  </div>
-                </label>
               </div>
             <br/>
             <div className="signup-disclaimer">

@@ -7,7 +7,6 @@ module.exports = function validateRegisterInput(data) {
   let errors = {};
   data.username = validText(data.username) ? data.username : '';
   data.email = validText(data.email) ? data.email : '';
-  data.email2 = validText(data.email2) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
   data.password2 = validText(data.password2) ? data.password2 : '';
 
@@ -27,18 +26,6 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is invalid';
   }
 
-  if (Validator.isEmpty(data.email2)) {
-    errors.email2 = "Confirm Email field is required"
-  }
-
-  if (!Validator.isEmail(data.email2)) {
-    errors.email2 = 'Email confirmation is invalid';
-  }
-
-  if (!Validator.equals(data.email, data.email2)){
-    errors.email2 = "Emails must match"
-  }
-
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password field is required';
   }
@@ -54,11 +41,6 @@ module.exports = function validateRegisterInput(data) {
   if (!Validator.equals(data.password, data.password2)) {
     errors.password2 = 'Passwords must match';
   }
-
-  if (Validator.isEmpty(data.birthdate)) {
-    errors.birthdate = 'Birthdate field is required';
-  }
-
 
   return {
     errors,

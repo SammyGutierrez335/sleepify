@@ -11,8 +11,8 @@ const validateLoginInput = require('../helpers/validation/login');
 router.post('/register', async (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) return res.status(400).json(errors);
-  let {username, email, birthdate, password} = req.body
-
+  let {username, email, password} = req.body
+  console.log([username, email, password])
   let duplicateEmail = await findUser({ email })
   if (duplicateEmail) return res.status(400).json({ email: "A user has already registered with this email address" })
   
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
   
   // Otherwise create a new user
   password =  await hashPassword(password)
-  const newUser = await createUser({username, email, birthdate, password})
+  const newUser = await createUser({username, email, password})
   if (!newUser) return res.status(500)
   res.json(newUser)
 })
@@ -33,9 +33,9 @@ router.post('/login', async (req, res) => {
 
   let {email, password} = req.body;
   let user = await findUser({email})  
-  if (!user) return res.status(404).json({login: 'Unable to find a user with the email provided'});
+  if (!user) return res.status(404).json({login: 'Unable to find a user with the credentials provided'});
   let isMatch = await bcrypt.compare(password, user.password)
-  if (!isMatch) return res.status(400).json({ login: 'Incorrect username or password.' })
+  if (!isMatch) return res.status(400).json({ login: 'Incorrect credentials.' })
 
   const payload = { id: user.id, username: user.username };
 

@@ -182,7 +182,7 @@ class LoginForm extends React.Component {
                   type="text"
                   value={this.state.email}
                   onChange={this.update('email')}
-                  placeholder="Email address or username"
+                  placeholder="Email address"
                   onFocus={() => this.changeBorder('email')}
                   onBlur={()=>this.changeBorderonBlur('email')}
                 />
