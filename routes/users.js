@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const keys = require('../config/keys');
 const {hashPassword} = require('../helpers/bcrypt')
 const {findUser, createUser} = require('../services/user.service')
 
@@ -42,7 +41,7 @@ router.post('/login', async (req, res) => {
 
   jwt.sign(
     payload,
-    keys.secretOrKey,
+    process.env.SECRET_OR_KEY,
     // Tell the key to expire in one hour
     { expiresIn: 3600 },
     (err, token) => {
