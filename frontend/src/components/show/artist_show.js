@@ -7,6 +7,7 @@ class ArtistShow extends React.Component {
   }
 
   render() {
+    console.log(this.props.artist)
     let liSongs;
     if (!this.props.artist) return null;
     let artist = this.props.artist;

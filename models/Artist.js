@@ -9,7 +9,8 @@ const ArtistSchema = new Schema({
   songs: [
     {
       type: Schema.Types.ObjectId,
-      ref: "songs"
+      ref: "songs",
+      autopopulate:true
     }
   ],
   albums: [
@@ -49,5 +50,5 @@ ArtistSchema.statics.addAlbum = (artistId, albumId) => {
     });
   });
 };
-
+ArtistSchema.plugin(require('mongoose-autopopulate'));
 module.exports = mongoose.model("artists", ArtistSchema);

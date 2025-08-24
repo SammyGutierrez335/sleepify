@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const findPlaylist = require('../services/playlist.service')
+const Playlist = require("../models/Playlist");
+const {findPlaylist} = require('../services/playlist.service')
 
 router.post("/create", (req, res) => {
   if (!req.body.title)  return res.status(400).json("Please enter a title");

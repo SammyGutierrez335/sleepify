@@ -24,6 +24,7 @@ class PlaylistShow extends React.Component {
 
   playAll(e) {
     e.preventDefault();
+    console.log("playingAll")
     this.props.playAllTracks(this.props.playlist.songs);
   }
 
@@ -68,7 +69,7 @@ class PlaylistShow extends React.Component {
   render() {
     const { playlist, username } = this.props;
     if (!playlist) return null;
-    const hasSong = playlist.songs.length;
+    const hasSong = playlist.songs && playlist.songs.length;
     return (
       <div className="open-player-body">
         <div className="ps-container">

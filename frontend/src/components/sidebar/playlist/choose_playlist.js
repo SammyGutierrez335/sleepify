@@ -22,7 +22,6 @@ class ChoosePlaylist extends React.Component {
   }
 
   render() { 
-    debugger; 
     let liPlaylists; 
     if (this.props.playlists) {
       liPlaylists = Object.values(this.props.playlists).map(playlist =>  {

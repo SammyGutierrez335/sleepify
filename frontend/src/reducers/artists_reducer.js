@@ -5,7 +5,7 @@ const artistsReducer = (oldState = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ARTIST:
-      return action.artist.data;
+      return action.artist.data[0];
     case RECEIVE_ARTISTS:
       return action.artists.data;
     default:

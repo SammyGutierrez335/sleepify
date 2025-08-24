@@ -88,13 +88,24 @@ router.patch('/like/:id', (req, res) => {
         User.findById(req.body.userId)
           .then(user => {
             if (user) {
-              if (!user.likedSongs.includes(req.params.id)) {
-                user.likedSongs.push(req.params.id)
+              let isLiked = false
+                user.likedSongs.forEach(song => {
+                if (song._id.equals(req.params.id)) {
+                  isLiked = true
+                }
+              })
+              if (!isLiked) {
+                user.likedSongs.push(likeData.songId)
                 user.save();
                 return res.json(likeData)
               } else {
-                const songIdx = user.likedSongs.indexOf(req.params.id);
-                user.likedSongs.splice(songIdx, 1);
+                const newLikedSongs = user.likedSongs.filter(songId => {
+                  console.log(songId)
+                  songId !== req.params.id
+                })
+
+                console.log("unliking")
+                user.likedSongs = newLikedSongs
                 user.save();
                 return res.json(likeData)
               }
@@ -103,32 +114,5 @@ router.patch('/like/:id', (req, res) => {
       }
     });
 });
-
-// router.patch('/like', (req,res) => {
-//   const likeData = {userId: req.body.userId,
-//               songs: req.body.songs
-//             }
-//   User.findById(req.body.userId)
-//       .then(user => {
-//         if(user) {
-//             if(likeData.songs.every((song) => user.likedSongs.includes(song))) {
-//               likeData.songs.forEach(song => {
-//                 let songIdx = user.likedSongs.indexOf(song);
-//                 user.likedSongs.splice(songIdx, 1);
-//               })
-//               user.save();
-//               return res.json(likeData)
-//             } else {
-//               likeData.songs.forEach(song => {
-//                 if (!user.likedSongs.includes(song)) {
-//                   user.likedSongs.push(song)
-//                 }
-//               })
-//               user.save();
-//               return res.json(likeData)
-//             }
-//         }
-//       });
-// });
 
 module.exports = router;
