@@ -6,6 +6,7 @@
 }
 #footer-nav {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   width: 100%;
   padding: 80px 0 50px;
@@ -30,12 +31,19 @@
 
 #footer-nav-links {
   display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#footer-nav-links ul{
+  display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 80%;
+  text-decoration: none;
 }
 
 #footer-nav-links ul h4 {
-  padding: 33px 30px 5px 30px;
   margin: 0;
   color: #919496;
   font-size: 12px;
@@ -47,14 +55,18 @@
 }
 
 #footer-nav-links ul li {
-  padding: 12px 30px;
   margin: 0;
   color: white;
-  font-size: 12px;
+  font-size: 1em;
   line-height: 1.5;
   font-weight: 900;
   line-height: 1.4;
   letter-spacing: 0.08em;
+}
+
+#footer-nav-links ul li a:visited {
+  text-decoration: #919496;
+  color: white;   
 }
 
 #social-network-icons {

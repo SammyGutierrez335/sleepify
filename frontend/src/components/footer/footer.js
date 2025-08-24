@@ -10,41 +10,26 @@ class Header extends React.Component {
           </div>
           <div id="footer-nav-links">
             <ul>
-              <h4>Sam <br></br>Gutierrez</h4>
-              <li><a href="https://www.samgutierrez.com" ><i className="social-icon fas fa-portrait"></i></a>Portfolio</li>
-              <li><a href="https://github.com/SammyGutierrez335" ><i className="social-icon fab fa-github"></i></a>GitHub</li>
-              <li><a href="https://www.linkedin.com/in/sammy-gutierrez/" ><i className="social-icon fab fa-linkedin"></i></a>LinkedIn</li>
-              <li><a href="https://angel.co/u/sammy-gutierrez/" ><i className="social-icon fab fa-angellist"></i></a>AngelList</li>
-              <li><a href="mailto:sammygutierrez335@gmail.com" ><i className="social-icon fas fa-envelope-square"></i></a>Email</li>
-            </ul>
-            <ul>
-              <h4>Kevin <br></br>Lu</h4>
-              <li><a href="" ><i className="social-icon fas fa-portrait"></i></a>Portfolio</li>
-            <li><a href="" ><i className="social-icon fab fa-github"></i></a>GitHub</li>
-              <li><a href="https://www.linkedin.com/in/kevin-lu-96b294191/" ><i className="social-icon fab fa-linkedin"></i></a>LinkedIn</li>
-              <li><a href="" ><i className="social-icon fab fa-angellist"></i></a>AngelList</li>
-              <li><a href="mailto:[emailgoeshere]" ><i className="social-icon fas fa-envelope-square"></i></a>Email</li>
-              </ul>
-            <ul>
-            <h4>Tristan<br></br>Mockler</h4>
-              <li><a href="" ><i className="social-icon fas fa-portrait"></i></a>Portfolio</li>
-              <li><a href="" ><i className="social-icon fab fa-github"></i></a>GitHub</li>
-              <li><a href="https://www.linkedin.com/in/tristan-mockler-bb2360173/" ><i className="social-icon fab fa-linkedin"></i></a>LinkedIn</li>
-              <li><a href="" ><i className="social-icon fab fa-angellist"></i></a>AngelList</li>
-              <li><a href="mailto:[emailgoeshere]" ><i className="social-icon fas fa-envelope-square"></i></a>Email</li>
-            </ul>
-            <ul>
-              <h4>Don <br></br>Sondapperumaarachchi</h4>
-              <li><a href="https://www.donsondapperumaarachchi.com" style={{color: 'white'}}><i className="social-icon fas fa-portrait"></i>Portfolio</a></li>
-              <li><a href="https://github.com/kewlfeet" style={{color: 'white'}}><i className="social-icon fab fa-github"></i>GitHub</a></li>
-              <li><a href="https://www.linkedin.com/in/don-ayesh-sondapperumaarachchi-827894146/" style={{color: 'white'}}><i className="social-icon fab fa-linkedin"></i>LinkedIn</a></li>
-              <li><a href="https://angel.co/u/don-sondapperumaarachchi" style={{color: 'white'}}><i className="social-icon fab fa-angellist"></i>AngelList</a></li>
-              <li><a href="mailto:ayesh98@gmail.com" style={{color: 'white'}}><i className="social-icon fas fa-envelope-square"></i>Email</a></li>
+              <h4>Sammy<br></br>Gutierrez</h4>
+              <li>
+                <a href="https://sammygutierrez335.github.io/Portfolio/"><i className="social-icon fas fa-portrait">Portfolio</i></a>
+              </li>
+              <li>
+                <a href="https://github.com/SammyGutierrez335"><i className="social-icon fab fa-github">GitHub</i></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/sammy-gutierrez/" ><i className="social-icon fab fa-linkedin">LinkedIn</i></a>
+              </li>
+              <li>
+                <a href="mailto:sammygutierrez335@gmail.com"><i className="social-icon fas fa-envelope-square">Email</i></a>
+              </li>
             </ul>
           </div>
           <div id="bottom-links">
-            <span></span>
-            <span>2020 Sleepify</span>
+            <span>Sleepify, is a personal academic portfolio project created for learning and demonstration purposes only. It is not affiliated with, endorsed by, or intended to replace Spotify or any of its services. 
+              <br/>All trademarks, logos, and brand names belong to their respective owners.
+              <br />2020 Sleepify
+            </span>
           </div>
         </nav>
       </div>
